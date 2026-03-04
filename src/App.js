@@ -1,12 +1,13 @@
 import React, {useState} from 'react';
-import Counter from './components/Counter'
+import Counter from './components/Counter';
+import ClassCounter from './components/ClassCounter';
 
 function App() {
   const [value, setValue] = useState('Текст в инпуте')
 
   return (
     <div className="App">
-      <Counter/>
+      <ClassCounter/>
     </div>
   );
 }
