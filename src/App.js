@@ -1,9 +1,9 @@
-import React, {useState} from 'react';
-import Counter from './components/Counter';
-import ClassCounter from './components/ClassCounter';
+import {useState} from 'react';
 import './styles/App.css';
-import PostItem from './components/PostItem';
 import PostList from './components/PostList';
+import MyButton from './components/Ui/button/MyButton'
+import MyInput from './components/Ui/input/MyInput';
+
 
 function App() {
 
@@ -15,7 +15,12 @@ function App() {
 
   return (
     <div className="App">
-      <PostList posts={posts} />
+    <form>
+      <MyInput type="text" placeholder="Название поста"></MyInput>
+      <MyInput  type="text" placeholder="Описание поста"></MyInput>
+      <MyButton disabled>Создать пост</MyButton>
+    </form>
+      <PostList posts={posts} title="Список постов 1"/>
     </div>
   );
 }
