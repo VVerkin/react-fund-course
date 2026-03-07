@@ -7,21 +7,25 @@ import MyInput from './components/Ui/input/MyInput';
 
 function App() {
 
-  const [posts, setProps] = useState([
+  const [posts, setPosts] = useState([
     {id: 1, title: 'Javascript', body: 'Description'},
     {id: 2, title: 'Javascript 2', body: 'Description'},
     {id: 3, title: 'Javascript 3', body: 'Description'},
   ]);
 
   const [title, setTitle] = useState('')
-
-    {/*Получение данных из неуправляемого инпута с помощью useRef */}
-  const bodyInputRef = useRef();
+  const [body, setBody] = useState('')
 
   const addNewPost = (e) => {
     e.preventDefault()
-    console.log(title)
-    console.log(bodyInputRef.current.value);
+    const newPost = {
+      id: Date.now(),
+      title,
+      body,
+    }
+    setPosts([...posts, newPost]);
+    setTitle('');
+    setBody('');
   }
 
   return (
@@ -34,9 +38,9 @@ function App() {
         type="text"
         placeholder="Название поста" 
       />
-      {/*Неуправляемый контент*/}
       <MyInput
-        ref={bodyInputRef}
+        value={body}
+        onChange={e => setBody(e.target.value)}
         type="text"
         placeholder="Описание поста" />
       <MyButton onClick={addNewPost}>Создать пост</MyButton>
