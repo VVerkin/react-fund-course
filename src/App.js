@@ -1,9 +1,7 @@
 import {useState} from 'react';
 import './styles/App.css';
 import PostList from './components/PostList';
-import MyButton from './components/Ui/button/MyButton'
-import MyInput from './components/Ui/input/MyInput';
-
+import PostForm from './components/PostForm';
 
 function App() {
 
@@ -13,31 +11,13 @@ function App() {
     {id: 3, title: 'Javascript 3', body: 'Description'},
   ]);
 
-  const [post, setPost] = useState({title: '', body: ''}) // Создаем состояние с объектом, в котором сразу инициализируем пустые строки
-
-  const addNewPost = (e) => {
-    e.preventDefault()
-    setPosts([...posts, {...post, id: Date.now()}]) // Создаем новый объект в массиве, разворачиваем информацию из поста и добавляем id
-    setPost({title: '', body: ''})
+  const createPost = (newPost) => {
+    setPosts([...posts, newPost])
   }
 
   return (
     <div className="App">
-    <form>
-    {/*Управляемый контент*/}
-      <MyInput
-        value={post.title}
-        onChange={e => setPost({...post, title: e.target.value})} // Вызываем setPost и передаем туда объект, в котором разворачиваем старый Post и перезатираем нужное нам поле в конкретно этом инпуте
-        type="text"
-        placeholder="Название поста" 
-      />
-      <MyInput
-        value={post.body}
-        onChange={e => setPost({...post, body: e.target.value})} // Аналогично изменяем нужное нам поле
-        type="text"
-        placeholder="Описание поста" />
-      <MyButton onClick={addNewPost}>Создать пост</MyButton>
-    </form>
+      <PostForm create={createPost}/>
       <PostList posts={posts} title="Список постов 1"/>
     </div>
   );
