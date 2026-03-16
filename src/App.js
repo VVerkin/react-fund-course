@@ -22,7 +22,12 @@ function App() {
   return (
     <div className="App">
       <PostForm create={createPost}/>
-      <PostList remove={removePost} posts={posts} title="Список постов 1"/>
+      //Тернарным оператором зададим условие вывода сообщения при отсутствии постов
+      {posts.length !== 0 // Если длинна массива с постами не равнна нулю
+        ?<PostList remove={removePost} posts={posts} title="Список постов 1"/> //Отрисовывает список постов
+        : <div>Посты не найдены!</div> //Выдает сообщение об отсутствии постов
+      }
+      
     </div>
   );
 }
