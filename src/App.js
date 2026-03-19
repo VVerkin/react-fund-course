@@ -2,6 +2,7 @@ import {useState} from 'react';
 import './styles/App.css';
 import PostList from './components/PostList';
 import PostForm from './components/PostForm';
+import MySelect from './components/Ui/select/MySelect';
 
 function App() {
 
@@ -20,12 +21,25 @@ function App() {
   }
 
   return (
+    
     <div className="App">
       <PostForm create={createPost}/>
-      //Тернарным оператором зададим условие вывода сообщения при отсутствии постов
-      {posts.length !== 0 // Если длинна массива с постами не равнна нулю
+      <hr style={{margin: '15px 0'}}></hr>
+      <div>
+      <MySelect 
+        defaultValue="Сортировка"
+        options={[ 
+          {value: 'title', name: 'По названию'},
+          {value: 'body', name: 'По описанию'},
+        ]}
+      />
+      </div>
+
+      {
+        // Тернарным оператором зададим условие вывода сообщения при отсутствии постов
+        posts.length !== 0 // Если длинна массива с постами не равнна нулю
         ?
-        <PostList remove={removePost} posts={posts} title="Список постов 1"/> //Отрисовывает список постов
+        <PostList remove={removePost} posts={posts} title="Посты про JS"/> //Отрисовывает список постов
         :
         <h1 style={{textAlign: 'center'}}>
           Посты не найдены!
